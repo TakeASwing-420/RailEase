@@ -21,3 +21,9 @@ A Java-based railway management system that allows for train searches, ticket bo
 
 ```bash
 mvn clean package
+```
+
+## Running the Application
+```bash
+mvn clean package && java -cp target/railway-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar com.railway.RailwayManagementSystem
+```
