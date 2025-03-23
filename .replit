@@ -32,7 +32,6 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "mvn compile exec:java -Dexec.mainClass=\"com.railway.RailwayManagementSystem\" -Dexec.cleanupDaemonThreads=false"
-waitForPort = 5000
 
 [[workflows.workflow]]
 name = "railway-app"
