@@ -146,6 +146,7 @@ public class DataInitializationService {
     
     private void createSampleTrainData() {
         List<Train> sampleTrains = new ArrayList<>();
+        List<Train> trainsToSave = new ArrayList<>();
         
         sampleTrains.add(new Train("12345", "Delhi", "Mumbai", "08:00", "16:00", "Rajdhani Express"));
         sampleTrains.add(new Train("23456", "Chennai", "Bangalore", "09:30", "12:30", "Shatabdi Express"));
@@ -153,8 +154,21 @@ public class DataInitializationService {
         sampleTrains.add(new Train("45678", "Mumbai", "Goa", "07:15", "15:45", "Jan Shatabdi Express"));
         sampleTrains.add(new Train("56789", "Hyderabad", "Chennai", "13:00", "20:30", "Charminar Express"));
         
-        trainService.saveAllTrains(sampleTrains);
-        logger.info("Created {} sample trains", sampleTrains.size());
+        // Only add trains that don't already exist
+        for (Train train : sampleTrains) {
+            if (!trainService.trainExistsByNumber(train.getTrainNumber())) {
+                trainsToSave.add(train);
+            } else {
+                logger.info("Train with number {} already exists. Skipping.", train.getTrainNumber());
+            }
+        }
+        
+        if (!trainsToSave.isEmpty()) {
+            trainService.saveAllTrains(trainsToSave);
+            logger.info("Created {} sample trains", trainsToSave.size());
+        } else {
+            logger.info("No new sample trains needed to be created");
+        }
     }
     
     private String getStringCellValue(Cell cell) {

@@ -80,7 +80,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- No configuration needed since Lombok is removed -->
+                <configuration>
+                    <mainClass>com.railway.RailwayManagementApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

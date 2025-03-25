@@ -35,8 +35,21 @@ public class TrainController {
                 .orElse(ResponseEntity.notFound().build());
     }
     
+    @GetMapping("/search")
+    public ResponseEntity<Train> searchTrainByNumber(@RequestParam String trainNumber) {
+        Optional<Train> train = trainService.getTrainByNumber(trainNumber);
+        return train.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
     @GetMapping("/destination/{destination}")
     public ResponseEntity<List<Train>> getTrainsByDestination(@PathVariable String destination) {
+        List<Train> trains = trainService.getTrainsByDestination(destination);
+        return ResponseEntity.ok(trains);
+    }
+    
+    @GetMapping("/search/destination")
+    public ResponseEntity<List<Train>> searchTrainsByDestination(@RequestParam String destination) {
         List<Train> trains = trainService.getTrainsByDestination(destination);
         return ResponseEntity.ok(trains);
     }
