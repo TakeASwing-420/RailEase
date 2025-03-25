@@ -19,6 +19,10 @@ args = "RailwayManagementSystem"
 task = "workflow.run"
 args = "railway-app"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "SpringBootApp"
+
 [[workflows.workflow]]
 name = "RailwayManagementSystem"
 author = "agent"
@@ -47,5 +51,24 @@ task = "packager.installForAll"
 task = "shell.exec"
 args = "mvn clean package && java -cp target/railway-management-system-1.0-SNAPSHOT-jar-with-dependencies.jar com.railway.RailwayManagementSystem"
 
+[[workflows.workflow]]
+name = "SpringBootApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mvn spring-boot:run"
+waitForPort = 5000
+
 [deployment]
 run = ["sh", "-c", "mvn compile exec:java -Dexec.mainClass=\"com.railway.RailwayManagementSystem\" -Dexec.cleanupDaemonThreads=false"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80

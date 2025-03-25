@@ -1,16 +1,38 @@
 package com.railway.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "trains")
 public class Train {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "train_number", unique = true, nullable = false)
     private String trainNumber;
+    
+    @Column(name = "from_station", nullable = false)
     private String fromStation;
+    
+    @Column(name = "to_station", nullable = false)
     private String toStation;
+    
+    @Column(name = "departure_time", nullable = false)
     private String departureTime;
+    
+    @Column(name = "arrival_time", nullable = false)
     private String arrivalTime;
+    
+    @Column(name = "train_name", nullable = false)
     private String trainName;
     
+    // Default constructor required by JPA
     public Train() {
     }
     
+    // Full constructor
     public Train(String trainNumber, String fromStation, String toStation, String departureTime, String arrivalTime, String trainName) {
         this.trainNumber = trainNumber;
         this.fromStation = fromStation;
@@ -21,6 +43,14 @@ public class Train {
     }
     
     // Getters and setters
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getTrainNumber() {
         return trainNumber;
     }

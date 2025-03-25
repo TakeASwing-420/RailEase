@@ -1,16 +1,49 @@
 package com.railway.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "passengers")
 public class Passenger {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "serial_number")
     private int serialNumber;
+    
+    @Column(name = "train_number", nullable = false)
     private String trainNumber;
+    
+    @Column(name = "name", nullable = false)
     private String name;
+    
+    @Column(name = "age", nullable = false)
     private int age;
+    
+    @Column(name = "gender", nullable = false)
     private String gender;
+    
+    @Column(name = "seat_status", nullable = false)
     private String seatStatus;
     
+    // Default constructor required by JPA
     public Passenger() {
     }
     
+    // Full constructor
+    public Passenger(Long id, int serialNumber, String trainNumber, String name, int age, String gender, String seatStatus) {
+        this.id = id;
+        this.serialNumber = serialNumber;
+        this.trainNumber = trainNumber;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.seatStatus = seatStatus;
+    }
+    
+    // Constructor without id for easier creation
     public Passenger(int serialNumber, String trainNumber, String name, int age, String gender, String seatStatus) {
         this.serialNumber = serialNumber;
         this.trainNumber = trainNumber;
@@ -21,6 +54,14 @@ public class Passenger {
     }
     
     // Getters and setters
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public int getSerialNumber() {
         return serialNumber;
     }
