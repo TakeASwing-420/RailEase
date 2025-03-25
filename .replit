@@ -4,31 +4,6 @@ modules = ["java"]
 channel = "stable-24_05"
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "railway-api"
-
-[[workflows.workflow]]
-name = "railway-api"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xms256m -Xmx512m\""
-waitForPort = 5000
 
 [deployment]
 run = ["sh", "-c", "mvn compile exec:java -Dexec.mainClass=\"com.railway.RailwayManagementSystem\" -Dexec.cleanupDaemonThreads=false"]
