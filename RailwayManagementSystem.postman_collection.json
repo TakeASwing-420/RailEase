@@ -1,0 +1,379 @@
+{
+  "info": {
+    "name": "Railway Management System API",
+    "description": "Collection of API endpoints for the Railway Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Train APIs",
+      "item": [
+        {
+          "name": "Get All Trains",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/trains",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains"]
+            }
+          }
+        },
+        {
+          "name": "Get Train by Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/trains/12345",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "12345"]
+            }
+          }
+        },
+        {
+          "name": "Search Train by Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/trains/search?trainNumber=12345",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "search"],
+              "query": [
+                {
+                  "key": "trainNumber",
+                  "value": "12345"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Trains by Destination",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/trains/destination/Mumbai",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "destination", "Mumbai"]
+            }
+          }
+        },
+        {
+          "name": "Search Trains by Destination",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/trains/search/destination?destination=Mumbai",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "search", "destination"],
+              "query": [
+                {
+                  "key": "destination",
+                  "value": "Mumbai"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Train",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/trains",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"78901\",\n  \"trainName\": \"Vande Bharat Express\",\n  \"fromStation\": \"Delhi\",\n  \"toStation\": \"Varanasi\",\n  \"departureTime\": \"06:00\",\n  \"arrivalTime\": \"14:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Train",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/trains/12345",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "12345"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"12345\",\n  \"trainName\": \"Rajdhani Express\",\n  \"fromStation\": \"Delhi\",\n  \"toStation\": \"Mumbai\",\n  \"departureTime\": \"09:00\",\n  \"arrivalTime\": \"17:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Train",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/api/trains/78901",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "trains", "78901"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Passenger APIs",
+      "item": [
+        {
+          "name": "Get All Passengers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/passengers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers"]
+            }
+          }
+        },
+        {
+          "name": "Get Passenger by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/passengers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Passengers by Train Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/passengers/train/12345",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers", "train", "12345"]
+            }
+          }
+        },
+        {
+          "name": "Create Passenger",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/passengers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"12345\",\n  \"name\": \"Jane Smith\",\n  \"age\": 25,\n  \"gender\": \"Female\",\n  \"seatStatus\": \"Confirmed\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Passenger",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/passengers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"12345\",\n  \"name\": \"John Doe\",\n  \"age\": 32,\n  \"gender\": \"Male\",\n  \"seatStatus\": \"RAC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Passenger",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/api/passengers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "passengers", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Platform Ticket APIs",
+      "item": [
+        {
+          "name": "Get All Platform Tickets",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets"]
+            }
+          }
+        },
+        {
+          "name": "Get Platform Ticket by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Platform Tickets by Train Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets/train/12345",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets", "train", "12345"]
+            }
+          }
+        },
+        {
+          "name": "Get Platform Tickets in Time Range",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets/timerange?startTime=2025-03-25T00:00:00&endTime=2025-03-26T00:00:00",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets", "timerange"],
+              "query": [
+                {
+                  "key": "startTime",
+                  "value": "2025-03-25T00:00:00"
+                },
+                {
+                  "key": "endTime",
+                  "value": "2025-03-26T00:00:00"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Platform Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"12345\",\n  \"ticketsCount\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Platform Ticket",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainNumber\": \"12345\",\n  \"ticketsCount\": 4,\n  \"serialNumber\": 1,\n  \"issueTime\": \"2025-03-25T12:49:19.238438788\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Platform Ticket",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/api/platform-tickets/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "platform-tickets", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

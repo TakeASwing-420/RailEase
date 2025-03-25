@@ -36,10 +36,25 @@ public class TrainController {
     }
     
     @GetMapping("/search")
-    public ResponseEntity<Train> searchTrainByNumber(@RequestParam String trainNumber) {
-        Optional<Train> train = trainService.getTrainByNumber(trainNumber);
-        return train.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> searchTrains(
+            @RequestParam(required = false) String trainNumber,
+            @RequestParam(required = false) String destination) {
+        
+        // If train number is provided, search by train number
+        if (trainNumber != null && !trainNumber.isEmpty()) {
+            Optional<Train> train = trainService.getTrainByNumber(trainNumber);
+            return train.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        }
+        
+        // If destination is provided, search by destination
+        if (destination != null && !destination.isEmpty()) {
+            List<Train> trains = trainService.getTrainsByDestination(destination);
+            return ResponseEntity.ok(trains);
+        }
+        
+        // If neither parameter is provided, return bad request
+        return ResponseEntity.badRequest().body("Either trainNumber or destination must be provided");
     }
     
     @GetMapping("/destination/{destination}")

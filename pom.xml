@@ -46,17 +46,7 @@
             <scope>runtime</scope>
         </dependency>
         
-        <!-- Apache POI for Excel operations -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.2.3</version>
-        </dependency>
+        <!-- Apache POI dependencies removed - no longer needed -->
         
         <!-- Springdoc OpenAPI for API documentation -->
         <dependency>
